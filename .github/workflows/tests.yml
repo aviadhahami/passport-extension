@@ -6,8 +6,6 @@ name: Testing
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
 
 jobs:
   run_tests_and_coverage:
