@@ -10,7 +10,7 @@ on:
     branches: ["main"]
 
 jobs:
-  run_tests:
+  run_tests_and_coverage:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,4 +25,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: npm test
+      - run: npm test -- --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)

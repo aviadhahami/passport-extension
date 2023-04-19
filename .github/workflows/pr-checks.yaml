@@ -22,7 +22,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: npm test
+      - run: npm test -- --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
 
   lint:
     runs-on: ubuntu-latest
